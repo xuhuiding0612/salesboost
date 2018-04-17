@@ -5,19 +5,31 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.InsightsResponse;
 import com.maxmind.geoip2.record.*;
 import com.salesup.salesboost.domain.GeoIP2Information;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Date;
 
 @Service
+@PropertySource("classpath:application.properties")
 public class GeoIP2Service {
+    @Value("${GeoIP2.accountId}")
+    private Integer geoIP2AccountId;
+
+    @Value("${GeoIP2.licenseKey}")
+    private String geoIP2LicenseKey;
+
     public GeoIP2Information getInsights(String ipAddressString) {
         GeoIP2Information geoIP2Information = new GeoIP2Information();
-        try (WebServiceClient client = new WebServiceClient.Builder(42, "license_key")
+        geoIP2Information.setQueryTime(new Date());
+        try (WebServiceClient client = new WebServiceClient.Builder(geoIP2AccountId, geoIP2LicenseKey)
                 .build()) {
 
-            InetAddress ipAddress = InetAddress.getByName("128.101.101.101");
+            InetAddress ipAddress = InetAddress.getByName(ipAddressString);
 
             // Do the lookup
             InsightsResponse response = client.insights(ipAddress);

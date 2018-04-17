@@ -1,19 +1,23 @@
 package com.salesup.salesboost.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Quote {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
     private Customer customer;
+    @Column(name = "product_id_list")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Product.class)
+//    @JoinTable(uniqueConstraints=@UniqueConstraint(columnNames={"quote_id"}))
     private List<Product> productList;
+    @OneToOne
     private Submitter submitter;
+    private Date quoteTime;
 
     public Long getId() {
         return id;
@@ -45,5 +49,13 @@ public class Quote {
 
     public void setSubmitter(Submitter submitter) {
         this.submitter = submitter;
+    }
+
+    public Date getQuoteTime() {
+        return quoteTime;
+    }
+
+    public void setQuoteTime(Date quoteTime) {
+        this.quoteTime = quoteTime;
     }
 }

@@ -1,14 +1,15 @@
 package com.salesup.salesboost.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.salesup.salesboost.config.jpa.JpaConverterJson;
+
+import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Submitter {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String emailAddress;
@@ -16,7 +17,9 @@ public class Submitter {
     private String companyName;
     private String title;
     // GeoIP2Information
-    private GeoIP2Information geoIP2Information;
+    @Convert(converter = JpaConverterJson.class)
+    @Lob
+    private List<GeoIP2Information> geoIP2InformationList;
 
     public Long getId() {
         return id;
@@ -66,11 +69,18 @@ public class Submitter {
         this.title = title;
     }
 
-    public GeoIP2Information getGeoIP2Information() {
-        return geoIP2Information;
+    public List<GeoIP2Information> getGeoIP2InformationList() {
+        return geoIP2InformationList;
     }
 
-    public void setGeoIP2Information(GeoIP2Information geoIP2Information) {
-        this.geoIP2Information = geoIP2Information;
+    public void setGeoIP2InformationList(List<GeoIP2Information> geoIP2InformationList) {
+        this.geoIP2InformationList = geoIP2InformationList;
+    }
+
+    public void addGeoIP2InformationList(GeoIP2Information geoIP2Information) {
+        if (geoIP2InformationList == null || geoIP2InformationList.isEmpty()) {
+            geoIP2InformationList = new LinkedList<>();
+        }
+        geoIP2InformationList.add(geoIP2Information);
     }
 }

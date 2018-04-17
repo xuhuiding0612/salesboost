@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,6 +31,8 @@ public class QuoteService {
 
     public void createQuote(Long customerId, CreateQuoteDTO createQuoteDTO) {
         Quote quote = new Quote();
+        quote.setQuoteTime(createQuoteDTO.getQuoteTime());
+
         Customer customer = customerRepository.getOne(customerId);
         quote.setCustomer(customer);
 

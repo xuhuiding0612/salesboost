@@ -2,6 +2,7 @@ package com.salesup.salesboost.service;
 
 import com.salesup.salesboost.domain.GeoIP2Information;
 import com.salesup.salesboost.domain.Submitter;
+import com.salesup.salesboost.repository.SubmitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 public class SubmitterService {
     @Autowired
     private GeoIP2Service geoIP2Service;
+    @Autowired
+    private SubmitterRepository submitterRepository;
 
     public Submitter createSubmitter(
             String submitterName, String submitterEmailAddress, String submitterPhoneNumber,
@@ -21,7 +24,8 @@ public class SubmitterService {
         submitter.setTitle(submitterTitle);
 
         GeoIP2Information geoIP2Information = geoIP2Service.getInsights(submitterIPAddress);
-        submitter.setGeoIP2Information(geoIP2Information);
-        return submitter;
+        submitter.addGeoIP2InformationList(geoIP2Information);
+
+        return submitterRepository.save(submitter);
     }
 }

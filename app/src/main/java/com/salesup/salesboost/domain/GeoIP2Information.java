@@ -2,12 +2,15 @@ package com.salesup.salesboost.domain;
 
 import com.maxmind.geoip2.record.*;
 
+import java.util.Date;
+
 public class GeoIP2Information {
     private Country country;
     private Subdivision subdivision;
     private City city;
     private Postal postal;
     private Location location;
+    private Date queryTime;
 
     public Country getCountry() {
         return country;
@@ -47,5 +50,13 @@ public class GeoIP2Information {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Date getQueryTime() {
+        return queryTime;
+    }
+
+    public void setQueryTime(Date queryTime) {
+        this.queryTime = queryTime;
     }
 }

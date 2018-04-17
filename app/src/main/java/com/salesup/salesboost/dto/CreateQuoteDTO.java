@@ -1,9 +1,11 @@
 package com.salesup.salesboost.dto;
 
+import java.util.Date;
 import java.util.List;
 
 public class CreateQuoteDTO {
     private List<Long> productIdList;
+    private Date quoteTime;
     private String submitterName;
     private String submitterEmailAddress;
     private String submitterIPAddress;
@@ -17,6 +19,14 @@ public class CreateQuoteDTO {
 
     public void setProductIdList(List<Long> productIdList) {
         this.productIdList = productIdList;
+    }
+
+    public Date getQuoteTime() {
+        return quoteTime;
+    }
+
+    public void setQuoteTime(Date quoteTime) {
+        this.quoteTime = quoteTime;
     }
 
     public String getSubmitterName() {
