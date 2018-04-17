@@ -1,86 +1,91 @@
 package com.salesup.salesboost.domain;
 
 import com.salesup.salesboost.config.jpa.JpaConverterJson;
-
-import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Submitter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String emailAddress;
-    private String phoneNumber;
-    private String companyName;
-    private String title;
-    // GeoIP2Information
-    @Convert(converter = JpaConverterJson.class)
-    @Lob
-    private List<GeoIP2Information> geoIP2InformationList;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Long getId() {
-        return id;
-    }
+  private String name;
+  private String emailAddress;
+  private String phoneNumber;
+  private String companyName;
+  private String title;
+  // QueryGeolocation
+  @Convert(converter = JpaConverterJson.class)
+  @Lob
+  private List<QueryGeolocation> queryGeolocationList;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+  public String getEmailAddress() {
+    return emailAddress;
+  }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+  public void setEmailAddress(String emailAddress) {
+    this.emailAddress = emailAddress;
+  }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+  public String getCompanyName() {
+    return companyName;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public List<GeoIP2Information> getGeoIP2InformationList() {
-        return geoIP2InformationList;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setGeoIP2InformationList(List<GeoIP2Information> geoIP2InformationList) {
-        this.geoIP2InformationList = geoIP2InformationList;
-    }
+  public List<QueryGeolocation> getQueryGeolocationList() {
+    return queryGeolocationList;
+  }
 
-    public void addGeoIP2InformationList(GeoIP2Information geoIP2Information) {
-        if (geoIP2InformationList == null || geoIP2InformationList.isEmpty()) {
-            geoIP2InformationList = new LinkedList<>();
-        }
-        geoIP2InformationList.add(geoIP2Information);
+  public void setQueryGeolocationList(List<QueryGeolocation> queryGeolocationList) {
+    this.queryGeolocationList = queryGeolocationList;
+  }
+
+  public void addGeoIP2InformationList(QueryGeolocation queryGeolocation) {
+    if (queryGeolocationList == null || queryGeolocationList.isEmpty()) {
+      queryGeolocationList = new LinkedList<>();
     }
+    queryGeolocationList.add(queryGeolocation);
+  }
 }

@@ -4,76 +4,76 @@ import java.util.Date;
 import java.util.List;
 
 public class CreateQuoteDTO {
-    private List<Long> productIdList;
-    private Date quoteTime;
-    private String submitterName;
-    private String submitterEmailAddress;
-    private String submitterIPAddress;
-    private String submitterPhoneNumber;
-    private String submitterTitle;
-    private String submitterCompanyName;
+  private List<Long> productIdList;
+  private Date quoteTime;
+  private String submitterName;
+  private String submitterEmailAddress;
+  private String submitterIPAddress;
+  private String submitterPhoneNumber;
+  private String submitterTitle;
+  private String submitterCompanyName;
 
-    public List<Long> getProductIdList() {
-        return productIdList;
-    }
+  public List<Long> getProductIdList() {
+    return productIdList;
+  }
 
-    public void setProductIdList(List<Long> productIdList) {
-        this.productIdList = productIdList;
-    }
+  public void setProductIdList(List<Long> productIdList) {
+    this.productIdList = productIdList;
+  }
 
-    public Date getQuoteTime() {
-        return quoteTime;
-    }
+  public Date getQuoteTime() {
+    return quoteTime;
+  }
 
-    public void setQuoteTime(Date quoteTime) {
-        this.quoteTime = quoteTime;
-    }
+  public void setQuoteTime(Date quoteTime) {
+    this.quoteTime = quoteTime;
+  }
 
-    public String getSubmitterName() {
-        return submitterName;
-    }
+  public String getSubmitterName() {
+    return submitterName;
+  }
 
-    public void setSubmitterName(String submitterName) {
-        this.submitterName = submitterName;
-    }
+  public void setSubmitterName(String submitterName) {
+    this.submitterName = submitterName;
+  }
 
-    public String getSubmitterEmailAddress() {
-        return submitterEmailAddress;
-    }
+  public String getSubmitterEmailAddress() {
+    return submitterEmailAddress;
+  }
 
-    public void setSubmitterEmailAddress(String submitterEmailAddress) {
-        this.submitterEmailAddress = submitterEmailAddress;
-    }
+  public void setSubmitterEmailAddress(String submitterEmailAddress) {
+    this.submitterEmailAddress = submitterEmailAddress;
+  }
 
-    public String getSubmitterIPAddress() {
-        return submitterIPAddress;
-    }
+  public String getSubmitterIPAddress() {
+    return submitterIPAddress;
+  }
 
-    public void setSubmitterIPAddress(String submitterIPAddress) {
-        this.submitterIPAddress = submitterIPAddress;
-    }
+  public void setSubmitterIPAddress(String submitterIPAddress) {
+    this.submitterIPAddress = submitterIPAddress;
+  }
 
-    public String getSubmitterPhoneNumber() {
-        return submitterPhoneNumber;
-    }
+  public String getSubmitterPhoneNumber() {
+    return submitterPhoneNumber;
+  }
 
-    public void setSubmitterPhoneNumber(String submitterPhoneNumber) {
-        this.submitterPhoneNumber = submitterPhoneNumber;
-    }
+  public void setSubmitterPhoneNumber(String submitterPhoneNumber) {
+    this.submitterPhoneNumber = submitterPhoneNumber;
+  }
 
-    public String getSubmitterTitle() {
-        return submitterTitle;
-    }
+  public String getSubmitterTitle() {
+    return submitterTitle;
+  }
 
-    public void setSubmitterTitle(String submitterTitle) {
-        this.submitterTitle = submitterTitle;
-    }
+  public void setSubmitterTitle(String submitterTitle) {
+    this.submitterTitle = submitterTitle;
+  }
 
-    public String getSubmitterCompanyName() {
-        return submitterCompanyName;
-    }
+  public String getSubmitterCompanyName() {
+    return submitterCompanyName;
+  }
 
-    public void setSubmitterCompanyName(String submitterCompanyName) {
-        this.submitterCompanyName = submitterCompanyName;
-    }
+  public void setSubmitterCompanyName(String submitterCompanyName) {
+    this.submitterCompanyName = submitterCompanyName;
+  }
 }

@@ -6,14 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Product {
+public class Client {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
-  // TODO: add more properties: category
-  //    private ProductCategory productCategory;
+  // TODO: add more properties.
 
   public Long getId() {
     return id;

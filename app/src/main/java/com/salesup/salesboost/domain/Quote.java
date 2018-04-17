@@ -1,61 +1,70 @@
 package com.salesup.salesboost.domain;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Quote {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    private Customer customer;
-    @Column(name = "product_id_list")
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Product.class)
-//    @JoinTable(uniqueConstraints=@UniqueConstraint(columnNames={"quote_id"}))
-    private List<Product> productList;
-    @OneToOne
-    private Submitter submitter;
-    private Date quoteTime;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Long getId() {
-        return id;
-    }
+  @OneToOne private Client client;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  @Column(name = "product_id_list")
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Product.class)
+  //    @JoinTable(uniqueConstraints=@UniqueConstraint(columnNames={"quote_id"}))
+  private List<Product> productList;
 
-    public Customer getCustomer() {
-        return customer;
-    }
+  @OneToOne private Submitter submitter;
+  private Date quoteTime;
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public List<Product> getProductList() {
-        return productList;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
+  public Client getClient() {
+    return client;
+  }
 
-    public Submitter getSubmitter() {
-        return submitter;
-    }
+  public void setClient(Client client) {
+    this.client = client;
+  }
 
-    public void setSubmitter(Submitter submitter) {
-        this.submitter = submitter;
-    }
+  public List<Product> getProductList() {
+    return productList;
+  }
 
-    public Date getQuoteTime() {
-        return quoteTime;
-    }
+  public void setProductList(List<Product> productList) {
+    this.productList = productList;
+  }
 
-    public void setQuoteTime(Date quoteTime) {
-        this.quoteTime = quoteTime;
-    }
+  public Submitter getSubmitter() {
+    return submitter;
+  }
+
+  public void setSubmitter(Submitter submitter) {
+    this.submitter = submitter;
+  }
+
+  public Date getQuoteTime() {
+    return quoteTime;
+  }
+
+  public void setQuoteTime(Date quoteTime) {
+    this.quoteTime = quoteTime;
+  }
 }
