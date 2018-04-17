@@ -5,11 +5,12 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.InsightsResponse;
 import com.maxmind.geoip2.record.*;
 import com.salesup.salesboost.domain.GeoIP2Information;
-import com.salesup.salesboost.exception.GeoIP2Exception;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
+@Service
 public class GeoIP2Service {
     public GeoIP2Information getInsights(String ipAddressString) {
         GeoIP2Information geoIP2Information = new GeoIP2Information();

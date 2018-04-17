@@ -7,9 +7,11 @@ import com.salesup.salesboost.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+@Component
 public class DummyDataLoader implements ApplicationRunner {
     @Autowired
     private CustomerRepository customerRepository;

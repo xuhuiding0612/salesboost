@@ -2,7 +2,6 @@ package com.salesup.salesboost.service;
 
 import com.salesup.salesboost.domain.GeoIP2Information;
 import com.salesup.salesboost.domain.Submitter;
-import com.salesup.salesboost.exception.GeoIP2Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
