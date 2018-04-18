@@ -9,6 +9,7 @@ import com.maxmind.geoip2.record.Location;
 import com.maxmind.geoip2.record.Postal;
 import com.maxmind.geoip2.record.Subdivision;
 import com.salesup.salesboost.domain.QueryGeolocation;
+import com.salesup.salesboost.exception.RequestBodyValidationException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Date;
@@ -78,7 +79,7 @@ public class GeoIP2Service {
       queryGeolocation.setLocation(location);
       return queryGeolocation;
     } catch (IOException | GeoIp2Exception e) {
-      throw new RuntimeException(
+      throw new RequestBodyValidationException(
           "Error occurred during getting QueryGeolocation by ip address: " + e.getMessage());
     }
   }
