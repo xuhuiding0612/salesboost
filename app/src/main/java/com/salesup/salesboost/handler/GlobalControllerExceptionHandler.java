@@ -14,21 +14,22 @@ class GlobalControllerExceptionHandler {
 
   @ExceptionHandler(value = Exception.class)
   public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
-    //    // If the exception is annotated with @ResponseStatus rethrow it and let
-    //    // the framework handle it - like the OrderNotFoundException example
-    //    // at the start of this post.
-    //    // AnnotationUtils is a Spring Framework utility class.
-    //    if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) throw e;
-
-    // Otherwise setup and send the user to a default error-view.
-    ModelAndView mav = new ModelAndView();
-    mav.addObject(
-        "error", AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class).reason());
-    mav.addObject(
-        "status", AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class).code());
-    mav.addObject("message", e.getMessage());
-    mav.addObject("timestamp", new Date());
-    mav.setViewName(DEFAULT_ERROR_VIEW);
-    return mav;
+    // If the exception is annotated with @ResponseStatus send the user to a default error-view.
+    // AnnotationUtils is a Spring Framework utility class.
+    if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) == null) {
+      throw e;
+    }
+    // Otherwise setup and rethrow it and let the framework handle it.
+    else {
+      ModelAndView mav = new ModelAndView();
+      mav.addObject(
+          "error", AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class).reason());
+      mav.addObject(
+          "status", AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class).code());
+      mav.addObject("message", e.getMessage());
+      mav.addObject("timestamp", new Date());
+      mav.setViewName(DEFAULT_ERROR_VIEW);
+      return mav;
+    }
   }
 }
