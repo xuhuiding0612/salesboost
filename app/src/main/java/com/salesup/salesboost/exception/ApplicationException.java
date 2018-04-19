@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
  * the end user, and both expected(customized) and unexpected(common) exceptions are handled by the
  * DefaultExceptionHandler. The exception is assigned a certain HTTP error code and error message,
  * which will be returned to the client.
+ * https://stackoverflow.com/questions/45034371/where-to-handle-exceptions-in-spring-applications
  */
 public class ApplicationException extends RuntimeException {
 

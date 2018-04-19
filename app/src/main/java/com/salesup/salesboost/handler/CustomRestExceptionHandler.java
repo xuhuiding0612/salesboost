@@ -23,8 +23,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * Handle common client errors by overriding base methods and providing custom implementation.
  * handle custom errors(exceptions) that does not have a default implementation in the base class.
- * http://www.baeldung.com/global-error-handler-in-a-spring-rest-api (Few other ways to handle
- * global exceptions: https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
+ * http://www.baeldung.com/global-error-handler-in-a-spring-rest-api
+ *
+ * <p>(Few other ways to handle global exceptions:
+ * https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
  * https://stackoverflow.com/questions/28902374/spring-boot-rest-service-exception-handling)
  */
 @ControllerAdvice
