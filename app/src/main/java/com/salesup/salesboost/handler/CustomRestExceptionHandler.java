@@ -2,6 +2,7 @@ package com.salesup.salesboost.handler;
 
 import com.salesup.salesboost.domain.ApiError;
 import com.salesup.salesboost.exception.ApplicationException;
+import com.salesup.salesboost.exception.ExceptionType;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -19,8 +20,21 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Handle common client errors by overriding base methods and providing custom implementation.
+ * handle custom errors(exceptions) that does not have a default implementation in the base class.
+ * http://www.baeldung.com/global-error-handler-in-a-spring-rest-api (Few other ways to handle
+ * global exceptions: https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
+ * https://stackoverflow.com/questions/28902374/spring-boot-rest-service-exception-handling)
+ */
 @ControllerAdvice
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
+
+  /**
+   * @implNote BindException: This exception is thrown when fatal binding errors occur.
+   * @implNote MethodArgumentNotValidException: This exception is thrown when argument annotated
+   *     with @Valid failed validation.
+   */
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
       MethodArgumentNotValidException ex,
@@ -39,6 +53,12 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     return handleExceptionInternal(ex, apiError, headers, apiError.getStatus(), request);
   }
 
+  /**
+   * @implNote MissingServletRequestPartException: This exception is thrown when when the part of a
+   *     multipart request not found.
+   * @implNote MissingServletRequestParameterException: This exception is thrown when request
+   *     missing parameter.
+   */
   @Override
   protected ResponseEntity<Object> handleMissingServletRequestParameter(
       MissingServletRequestParameterException ex,
@@ -51,6 +71,18 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
   }
 
+  /**
+   * Customize servlet to throw NoHandlerFoundException instead of send 404 response. Used
+   * configurations in application.properties under resources directory
+   * spring.mvc.throw-exception-if-no-handler-found=true spring.resources.add-mappings=false
+   *
+   * <p>(Without this customization, if there is no handler founded in request, spring's default
+   * dispatcherServlet will handle the error and try to redirect to /error page. And if there is no
+   * /error page, spring will redirect the page to a Whitelabel Error Page.)
+   *
+   * <p>Here we customized this part to prevent from showing the whitelabel page and directly
+   * response as json.
+   */
   @Override
   protected ResponseEntity<Object> handleNoHandlerFoundException(
       NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -60,6 +92,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
   }
 
+  /**
+   * @implNote HttpRequestMethodNotSupportedException: Occurs when you send a requested with an
+   *     unsupported HTTP method:
+   */
   @Override
   protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
       HttpRequestMethodNotSupportedException ex,
@@ -76,6 +112,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
   }
 
+  /**
+   * @implNote HttpMediaTypeNotSupportedException: Occurs when the client send a request with
+   *     unsupported media type
+   */
   @Override
   protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(
       HttpMediaTypeNotSupportedException ex,
@@ -95,6 +135,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
   }
 
+  /**
+   * Default Handler: A fall-back handler - a catch-all type of logic that deals with all other
+   * exceptions that don’t have specific handlers.
+   */
   @ExceptionHandler({Exception.class})
   public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
     ApiError apiError =
@@ -105,6 +149,16 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
   }
 
+  /**
+   * IMPORTANT!!
+   *
+   * <p>Customized Exception: {@link ApplicationException} Expecting our application will only throw
+   * this exception. You will be able to define your exception type in 'ExceptionType' object {@link
+   * ExceptionType} as enum.
+   *
+   * <p>To customize an exception: You need to define the returned HTTP status for the exception,
+   * brief message (the whole message = brief message + detailed message), error(exception) name.
+   */
   @ExceptionHandler({ApplicationException.class})
   public ResponseEntity<Object> handleApplicationException(
       ApplicationException ex, WebRequest request) {

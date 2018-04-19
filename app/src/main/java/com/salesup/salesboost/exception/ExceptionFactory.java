@@ -1,9 +1,19 @@
 package com.salesup.salesboost.exception;
 
+import com.salesup.salesboost.handler.CustomRestExceptionHandler;
 import java.text.MessageFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * An ExceptionFactory class. This allows you to automatically log the exception in your application
+ * logs. At any place in your application, you can now throw an exception, and this will log the
+ * exception in the application logs. The exception will be thrown and picked up by the
+ * DefaultExceptionHandler thanks to the Spring @ControllerAdvice annotation in {@link
+ * CustomRestExceptionHandler} class.
+ *
+ * <p>How to use this class: throw ExceptionFactory.create(ExceptionType.INTERNAL_SERVER_ERROR);
+ */
 public class ExceptionFactory {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionFactory.class);

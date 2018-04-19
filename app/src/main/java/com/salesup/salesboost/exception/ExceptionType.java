@@ -4,9 +4,13 @@ import org.springframework.http.HttpStatus;
 
 public enum ExceptionType {
   REQUEST_BODY_VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "Illegal field(s) in request body: {0}");
-  // you can specify your own exception types...
+  // Specify more customized exception types...
 
   private HttpStatus status;
+  /**
+   * Brief Message: {@link String} Defined in ExceptionType enum. This message is a preview
+   * statement of what kind or type of error it can be.
+   */
   private String briefMessage;
 
   ExceptionType(HttpStatus status, String briefMessage) {

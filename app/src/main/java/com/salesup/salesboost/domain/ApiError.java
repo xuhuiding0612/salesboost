@@ -6,8 +6,11 @@ import org.springframework.http.HttpStatus;
 
 public class ApiError {
 
+  /** HTTP status code and reason phrase */
   private HttpStatus status;
+  /** Error message associated with exception. */
   private String message;
+  /** List of constructed error messages. */
   private List<String> errors;
 
   public ApiError(HttpStatus status, String message, List<String> errors) {
