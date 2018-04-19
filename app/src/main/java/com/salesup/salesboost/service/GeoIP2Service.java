@@ -14,11 +14,13 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 /** */
 @Service
+@Configuration
 @PropertySource("classpath:application.properties")
 public class GeoIP2Service {
   @Value("${GeoIP2.accountId}")
