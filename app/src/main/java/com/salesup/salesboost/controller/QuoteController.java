@@ -42,17 +42,4 @@ public class QuoteController {
     responseDTO.setSuccess(true);
     return new ResponseEntity<>(responseDTO, HttpStatus.OK);
   }
-
-  // TODO: custom error handling
-  //    @ControllerAdvice
-  //    public class ExceptionHandlerAdvice {
-  //
-  //        @ExceptionHandler(RuntimeException.class)
-  //        public ResponseEntity handleException(RuntimeException e) {
-  //            // log exception
-  //            return ResponseEntity
-  //                    .status(HttpStatus.FORBIDDEN)
-  //                    .body("Error Message");
-  //        }
-  //    }
 }
