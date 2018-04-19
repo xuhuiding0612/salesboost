@@ -20,6 +20,7 @@ public class ExceptionFactory {
   public static ApplicationException create(
       final ExceptionType exceptionType, final Object... detailedMessageArguments) {
     LOGGER.error(MessageFormat.format(exceptionType.getBriefMessage(), detailedMessageArguments));
+    // TODO: Store exception information in DB for tracking errors.
     return new ApplicationException(exceptionType, detailedMessageArguments);
   }
 }
