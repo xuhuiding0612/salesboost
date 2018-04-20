@@ -8,7 +8,7 @@ import com.maxmind.geoip2.record.Country;
 import com.maxmind.geoip2.record.Location;
 import com.maxmind.geoip2.record.Postal;
 import com.maxmind.geoip2.record.Subdivision;
-import com.salesup.salesboost.domain.QueryGeolocation;
+import com.salesup.salesboost.domain.QueriedGeolocation;
 import com.salesup.salesboost.exception.ExceptionFactory;
 import com.salesup.salesboost.exception.ExceptionType;
 import java.io.IOException;
@@ -37,9 +37,9 @@ public class GeoIP2Service {
    * @param ipAddressString IPv4 address string for querying geolocation information.
    * @return Queried geolocation of provided ip address.
    */
-  public QueryGeolocation getInsights(String ipAddressString) {
-    QueryGeolocation queryGeolocation = new QueryGeolocation();
-    queryGeolocation.setQueryTime(new Date());
+  public QueriedGeolocation getInsights(String ipAddressString) {
+    QueriedGeolocation queriedGeolocation = new QueriedGeolocation();
+    queriedGeolocation.setQueryTime(new Date());
     try (WebServiceClient client =
         new WebServiceClient.Builder(geoIP2AccountId, geoIP2LicenseKey).build()) {
 
@@ -75,16 +75,16 @@ public class GeoIP2Service {
 
       //            System.out.println(response.getTraits().getUserType()); // 'college'
 
-      queryGeolocation.setCity(city);
-      queryGeolocation.setCountry(country);
-      queryGeolocation.setSubdivision(subdivision);
-      queryGeolocation.setPostal(postal);
-      queryGeolocation.setLocation(location);
-      return queryGeolocation;
+      queriedGeolocation.setCity(city);
+      queriedGeolocation.setCountry(country);
+      queriedGeolocation.setSubdivision(subdivision);
+      queriedGeolocation.setPostal(postal);
+      queriedGeolocation.setLocation(location);
+      return queriedGeolocation;
     } catch (IOException | GeoIp2Exception e) {
       throw ExceptionFactory.create(
-          ExceptionType.REQUEST_BODY_VALIDATION_ERROR,
-          "Error occurred during getting QueryGeolocation by ip address: " + e.getMessage());
+          ExceptionType.IllegalRequestBodyFieldsException,
+          "Error occurred during getting QueriedGeolocation by ip address: " + e.getMessage());
     }
   }
 }

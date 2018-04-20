@@ -1,6 +1,6 @@
 package com.salesup.salesboost.service;
 
-import com.salesup.salesboost.domain.QueryGeolocation;
+import com.salesup.salesboost.domain.QueriedGeolocation;
 import com.salesup.salesboost.domain.Submitter;
 import com.salesup.salesboost.repository.SubmitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +37,9 @@ public class SubmitterService {
     submitter.setCompanyName(submitterCompanyName);
     submitter.setTitle(submitterTitle);
 
-    // Query insights queryGeolocation information by IPv4 address via GeoIP2 api.
-    QueryGeolocation queryGeolocation = geoIP2Service.getInsights(submitterIPAddress);
-    submitter.addGeoIP2InformationList(queryGeolocation);
+    // Query insights queriedGeolocation information by IPv4 address via GeoIP2 api.
+    QueriedGeolocation queriedGeolocation = geoIP2Service.getInsights(submitterIPAddress);
+    submitter.addGeoIP2InformationList(queriedGeolocation);
 
     return submitterRepository.save(submitter);
   }

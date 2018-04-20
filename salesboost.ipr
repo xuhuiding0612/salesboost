@@ -699,6 +699,15 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/2.0.0.RELEASE/1c7b68c3647a870888d457c3950f28869bc3d5db/spring-boot-starter-logging-2.0.0.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Gradle: org.springframework.boot:spring-boot-starter-security:2.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-security/2.0.0.RELEASE/393ab221bc9aba9c5c59808115177dc5cfaf1b4c/spring-boot-starter-security-2.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-security/2.0.0.RELEASE/f577cb9e683312901f18ecb10485564494a88cfb/spring-boot-starter-security-2.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Gradle: org.springframework.boot:spring-boot-starter-test:2.0.0.RELEASE">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-test/2.0.0.RELEASE/4ff0e1d9bd315a4a5867e9c6128691cac8b37348/spring-boot-starter-test-2.0.0.RELEASE.jar!/" />
@@ -778,6 +787,33 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.0.5.RELEASE/8380157b984eee5852240c8d9a45f72f1fc45f39/spring-data-jpa-2.0.5.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-config:5.0.3.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.0.3.RELEASE/6581e8c83eb5a08e1578fdd3093fd096e81e82ba/spring-security-config-5.0.3.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.0.3.RELEASE/d9ea219dfab41c16f8535d191886e89ec8b32e37/spring-security-config-5.0.3.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-core:5.0.3.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.0.3.RELEASE/6cc79dd1db872ff306a3c9ae9e5c047b649c84e3/spring-security-core-5.0.3.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.0.3.RELEASE/aaa512e4d8a52f9c1397d10140497fa237a17c40/spring-security-core-5.0.3.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-web:5.0.3.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.0.3.RELEASE/1c688054bfe015bcd067426f5ad77c01dd6486ac/spring-security-web-5.0.3.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.0.3.RELEASE/6e725386cb37958a9ee5c7ce03baca8d528c8d13/spring-security-web-5.0.3.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.springframework:spring-aop:5.0.4.RELEASE">

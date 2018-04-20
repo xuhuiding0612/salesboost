@@ -21,10 +21,10 @@ public class Submitter {
   private String phoneNumber;
   private String companyName;
   private String title;
-  // QueryGeolocation
+  // QueriedGeolocation
   @Convert(converter = JpaConverterJson.class)
   @Lob
-  private List<QueryGeolocation> queryGeolocationList;
+  private List<QueriedGeolocation> queriedGeolocationList;
 
   public Long getId() {
     return id;
@@ -74,18 +74,18 @@ public class Submitter {
     this.title = title;
   }
 
-  public List<QueryGeolocation> getQueryGeolocationList() {
-    return queryGeolocationList;
+  public List<QueriedGeolocation> getQueriedGeolocationList() {
+    return queriedGeolocationList;
   }
 
-  public void setQueryGeolocationList(List<QueryGeolocation> queryGeolocationList) {
-    this.queryGeolocationList = queryGeolocationList;
+  public void setQueriedGeolocationList(List<QueriedGeolocation> queriedGeolocationList) {
+    this.queriedGeolocationList = queriedGeolocationList;
   }
 
-  public void addGeoIP2InformationList(QueryGeolocation queryGeolocation) {
-    if (queryGeolocationList == null || queryGeolocationList.isEmpty()) {
-      queryGeolocationList = new LinkedList<>();
+  public void addGeoIP2InformationList(QueriedGeolocation queriedGeolocation) {
+    if (queriedGeolocationList == null || queriedGeolocationList.isEmpty()) {
+      queriedGeolocationList = new LinkedList<>();
     }
-    queryGeolocationList.add(queryGeolocation);
+    queriedGeolocationList.add(queriedGeolocation);
   }
 }

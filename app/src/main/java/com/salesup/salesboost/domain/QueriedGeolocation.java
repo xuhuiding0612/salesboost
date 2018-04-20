@@ -7,7 +7,7 @@ import com.maxmind.geoip2.record.Postal;
 import com.maxmind.geoip2.record.Subdivision;
 import java.util.Date;
 
-public class QueryGeolocation {
+public class QueriedGeolocation {
   private Country country;
   private Subdivision subdivision;
   private City city;

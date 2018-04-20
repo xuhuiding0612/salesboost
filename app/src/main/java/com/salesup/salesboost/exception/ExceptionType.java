@@ -3,7 +3,8 @@ package com.salesup.salesboost.exception;
 import org.springframework.http.HttpStatus;
 
 public enum ExceptionType {
-  REQUEST_BODY_VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "Illegal field(s) in request body: {0}");
+  IllegalRequestBodyFieldsException(
+      HttpStatus.BAD_REQUEST, "Illegal field(s) in request body: {0}");
   // Specify more customized exception types...
 
   private HttpStatus status;

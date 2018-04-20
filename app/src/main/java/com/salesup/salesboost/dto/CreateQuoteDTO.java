@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CreateQuoteDTO {
-  private List<Long> productIdList;
+  private List<String> productIdList;
   private Date quoteTime;
   private String submitterName;
   private String submitterEmailAddress;
@@ -13,11 +13,11 @@ public class CreateQuoteDTO {
   private String submitterTitle;
   private String submitterCompanyName;
 
-  public List<Long> getProductIdList() {
+  public List<String> getProductIdList() {
     return productIdList;
   }
 
-  public void setProductIdList(List<Long> productIdList) {
+  public void setProductIdList(List<String> productIdList) {
     this.productIdList = productIdList;
   }
 
