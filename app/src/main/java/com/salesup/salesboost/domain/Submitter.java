@@ -1,19 +1,22 @@
 package com.salesup.salesboost.domain;
 
-import com.salesup.salesboost.config.jpa.JpaConverterJson;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.salesup.salesboost.config.domain.DomainIdDeserializer;
+import com.salesup.salesboost.config.domain.DomainIdSerializer;
+import com.salesup.salesboost.config.domain.JpaConverterJson;
+import com.salesup.salesboost.config.domain.JsonSerializationSalt;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 
 @Entity
-public class Submitter {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Submitter extends BasicDomain {
+  @JsonSerialize(using = DomainIdSerializer.class)
+  @JsonDeserialize(using = DomainIdDeserializer.class)
+  @JsonSerializationSalt(saltClass = Submitter.class)
   private Long id;
 
   private String name;
@@ -26,10 +29,12 @@ public class Submitter {
   @Lob
   private List<QueriedGeolocation> queriedGeolocationList;
 
+  @Override
   public Long getId() {
     return id;
   }
 
+  @Override
   public void setId(Long id) {
     this.id = id;
   }

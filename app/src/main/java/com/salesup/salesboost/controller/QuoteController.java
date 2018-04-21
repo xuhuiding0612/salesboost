@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuoteController {
 
   @Autowired private QuoteService quoteService;
-  @Autowired private UtilService utilService;
 
   /**
    * Get existing quotes in database. Need clients to provide the encoded client id (backend will

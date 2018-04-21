@@ -1,23 +1,28 @@
 package com.salesup.salesboost.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.salesup.salesboost.config.domain.DomainIdDeserializer;
+import com.salesup.salesboost.config.domain.DomainIdSerializer;
+import com.salesup.salesboost.config.domain.JsonSerializationSalt;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
-public class Client {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Client extends BasicDomain {
+  @JsonSerialize(using = DomainIdSerializer.class)
+  @JsonDeserialize(using = DomainIdDeserializer.class)
+  @JsonSerializationSalt(saltClass = Client.class)
   private Long id;
 
   private String name;
   // TODO: add more properties.
 
+  @Override
   public Long getId() {
     return id;
   }
 
+  @Override
   public void setId(Long id) {
     this.id = id;
   }

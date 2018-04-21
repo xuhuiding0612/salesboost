@@ -1,4 +1,4 @@
-package com.salesup.salesboost.config.jpa;
+package com.salesup.salesboost.config.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

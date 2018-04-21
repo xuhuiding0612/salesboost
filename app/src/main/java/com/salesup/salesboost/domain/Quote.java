@@ -1,21 +1,24 @@
 package com.salesup.salesboost.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.salesup.salesboost.config.domain.DomainIdDeserializer;
+import com.salesup.salesboost.config.domain.DomainIdSerializer;
+import com.salesup.salesboost.config.domain.JsonSerializationSalt;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Quote {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Quote extends BasicDomain {
+  @JsonSerialize(using = DomainIdSerializer.class)
+  @JsonDeserialize(using = DomainIdDeserializer.class)
+  @JsonSerializationSalt(saltClass = Quote.class)
   private Long id;
 
   @OneToOne private Client client;
@@ -28,10 +31,12 @@ public class Quote {
   @OneToOne private Submitter submitter;
   private Date quoteTime;
 
+  @Override
   public Long getId() {
     return id;
   }
 
+  @Override
   public void setId(Long id) {
     this.id = id;
   }
