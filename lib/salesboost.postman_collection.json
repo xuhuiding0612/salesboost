@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "6b64d8e0-4d20-44ed-884b-f29209765832",
+		"name": "salesboost",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createQuote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"productIdList\": [\"4746187b35d7cc9dc7469dd94c8c01ae\", \"aae48bea8d68d8ae6cdd8ff1f69a38bc\"],\n\t\"quoteTime\": 1523957223008,\n\t\"submitterName\": \"Xuhui Ding\",\n\t\"submitterEmailAddress\": \"xuhui.ding@hotmail.com\",\n\t\"submitterIPAddress\": \"66.249.79.119\",\n\t\"submitterPhoneNumber\": \"8313462886\",\n\t\"submitterTitle\": \"CTO\",\n\t\"submitterCompanyName\": \"salesup\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/quote?encodedClientId=e1473f25935530927c5d04dde762c640",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quote"
+					],
+					"query": [
+						{
+							"key": "encodedClientId",
+							"value": "e1473f25935530927c5d04dde762c640"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuotes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/quote?encodedClientId=e1473f25935530927c5d04dde762c640",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quote"
+					],
+					"query": [
+						{
+							"key": "encodedClientId",
+							"value": "e1473f25935530927c5d04dde762c640"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEncodedClientId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/encode/client?clientId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"encode",
+						"client"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEncodedProductId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/encode/product?productId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"encode",
+						"product"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
