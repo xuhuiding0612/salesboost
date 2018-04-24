@@ -78,6 +78,6 @@ public class QuoteService {
     quote.setSubmitter(submitter);
 
     quoteRepository.save(quote);
-    logger.info("Saved quote successfully!");
+    logger.info("Created a quote successfully!");
   }
 }
