@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 
 public enum ExceptionType {
   IllegalRequestBodyFieldsException(
-      HttpStatus.BAD_REQUEST, "Illegal field(s) in request body: {0}");
+      HttpStatus.BAD_REQUEST, "Illegal field(s) in request body: {0}"),
+  IllegalRequestParametersException(
+      HttpStatus.BAD_REQUEST, "Illegal parameter(s) in request body: {0}");
   // Specify more customized exception types...
 
   private HttpStatus status;

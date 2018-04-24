@@ -2,7 +2,10 @@ package com.salesup.salesboost.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,82 @@ public class UtilService {
     return idCryptorInstance;
   }
 
+  /**
+   * validate full name
+   *
+   * @param fullName
+   * @return
+   */
+  public boolean validateFullName(String fullName) {
+    String regx = "^[\\p{L} .'-]+$";
+    Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(fullName);
+    return matcher.find();
+  }
+
+  /**
+   * validate first name
+   *
+   * @param firstName
+   * @return
+   */
+  public boolean validateFirstName(String firstName) {
+    return firstName.matches("[A-Z][a-zA-Z]*");
+  }
+
+  /**
+   * validate last name
+   *
+   * @param lastName
+   * @return
+   */
+  public boolean validateLastName(String lastName) {
+    return lastName.matches("[a-zA-z]+([ '-][a-zA-Z]+)*");
+  }
+
+  /**
+   * validate email address
+   *
+   * @param emailAddress
+   * @return
+   */
+  public boolean validateEmailAddress(String emailAddress) {
+    return EmailValidator.getInstance().isValid(emailAddress);
+  }
+
+  /**
+   * validate phone number
+   *
+   * @param phoneNumber
+   * @return
+   */
+  public boolean validatePhoneNumber(String phoneNumber) {
+    return phoneNumber.matches("^(1\\-)?[0-9]{3}\\-?[0-9]{3}\\-?[0-9]{4}$");
+  }
+
+  /**
+   * validate company name: TODO: aways true
+   *
+   * @param companyName
+   * @return
+   */
+  public boolean validateCompanyName(String companyName) {
+    return true;
+  }
+
+  /**
+   * validate title: TODO: using the same rule as validating full name
+   *
+   * @param title
+   * @return
+   */
+  public boolean validateTitle(String title) {
+    String regx = "^[\\p{L} .'-]+$";
+    Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(title);
+    return matcher.find();
+  }
+
   public static class IdCryptor {
 
     // Notice the difference between IdCryptor and StringIdCryptor: StringIdCryptor cannot be static
@@ -31,8 +110,10 @@ public class UtilService {
      * @param domainName domainName is the class name of domain class to be encoded and this will be
      *     used as salt in later encryption steps
      * @return encoded id string
+     * @throws {@link IllegalStateException}, {@link IllegalArgumentException}
      */
-    public String encodeId(Long id, String domainName) {
+    public String encodeId(Long id, String domainName)
+        throws IllegalStateException, IllegalArgumentException {
       stringIdCryptor = new StringIdCryptor(domainName);
       String idString = base10ToBase62(id.intValue());
       return stringIdCryptor.encodeClientIdString(idString);
@@ -43,8 +124,10 @@ public class UtilService {
      * @param domainName domainName is the class name of domain class to be encoded and this will be
      *     used as salt in later decryption steps
      * @return decoded id in {@link Long}
+     * @throws {@link IllegalStateException}, {@link IllegalArgumentException}
      */
-    public Long decodeId(String encodedId, String domainName) {
+    public Long decodeId(String encodedId, String domainName)
+        throws IllegalStateException, IllegalArgumentException {
       stringIdCryptor = new StringIdCryptor(domainName);
       String idString = stringIdCryptor.decodeClientId(encodedId);
       int id = base62ToBase10(idString);
@@ -70,8 +153,10 @@ public class UtilService {
      * @param domainName domainName is the class name of domain class to be encoded and this will be
      *     used as salt in later decryption steps
      * @return A list of decoded ids in {@link Long} type
+     * @throws {@link IllegalStateException}, {@link IllegalArgumentException}
      */
-    public List<Long> decodeIdList(List<String> encodedIdList, String domainName) {
+    public List<Long> decodeIdList(List<String> encodedIdList, String domainName)
+        throws IllegalStateException, IllegalArgumentException {
       stringIdCryptor = new StringIdCryptor(domainName);
       List<Long> decodedIdList = new ArrayList<>();
       for (String encodedId : encodedIdList) {

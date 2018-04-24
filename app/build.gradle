@@ -40,4 +40,9 @@ dependencies {
      * Security
      */
     compile("org.springframework.boot:spring-boot-starter-security")
+
+    /**
+     * Apache Commons validator (for validating email address, etc)
+     */
+    compile("commons-validator:commons-validator:1.6")
 }

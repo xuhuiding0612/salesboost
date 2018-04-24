@@ -7,9 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Customized annotation for getting salt as class name from domain classes.
- */
+/** Customized annotation for getting salt as class name from domain classes. */
 @Target({ElementType.FIELD, ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
