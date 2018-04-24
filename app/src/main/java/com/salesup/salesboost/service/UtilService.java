@@ -25,12 +25,25 @@ public class UtilService {
     // Notice the difference between IdCryptor and StringIdCryptor: StringIdCryptor cannot be static
     private StringIdCryptor stringIdCryptor;
 
+    /**
+     * @param id domain id in {@link Long} as defined in domain classes. These are real indies
+     *     stored in database.
+     * @param domainName domainName is the class name of domain class to be encoded and this will be
+     *     used as salt in later encryption steps
+     * @return encoded id string
+     */
     public String encodeId(Long id, String domainName) {
       stringIdCryptor = new StringIdCryptor(domainName);
       String idString = base10ToBase62(id.intValue());
       return stringIdCryptor.encodeClientIdString(idString);
     }
 
+    /**
+     * @param encodedId encoded id in {@link String} with password and domain class name as salt.
+     * @param domainName domainName is the class name of domain class to be encoded and this will be
+     *     used as salt in later decryption steps
+     * @return decoded id in {@link Long}
+     */
     public Long decodeId(String encodedId, String domainName) {
       stringIdCryptor = new StringIdCryptor(domainName);
       String idString = stringIdCryptor.decodeClientId(encodedId);
@@ -38,12 +51,26 @@ public class UtilService {
       return (long) id;
     }
 
+    /**
+     * The difference between this method and the method above is this method will use the internal
+     * method for this class (specifically for decodeIdList method below). And it will use the
+     * existing salt to decode ids.
+     */
     private Long decodeId(String encodedId) {
       String idString = stringIdCryptor.decodeClientId(encodedId);
       int id = base62ToBase10(idString);
       return (long) id;
     }
 
+    /**
+     * Instead of decoding one single encoded id string. This method will decode a list that
+     * contains encoded is strings.
+     *
+     * @param encodedIdList A list of string that contains encoded is strings as elements.
+     * @param domainName domainName is the class name of domain class to be encoded and this will be
+     *     used as salt in later decryption steps
+     * @return A list of decoded ids in {@link Long} type
+     */
     public List<Long> decodeIdList(List<String> encodedIdList, String domainName) {
       stringIdCryptor = new StringIdCryptor(domainName);
       List<Long> decodedIdList = new ArrayList<>();
@@ -97,6 +124,7 @@ public class UtilService {
       return sb.toString();
     }
 
+    /** private class where Encryptors password and salts are defined */
     private class StringIdCryptor {
       private TextEncryptor encryptor;
 
