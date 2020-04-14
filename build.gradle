@@ -9,7 +9,7 @@ buildscript {
 
 allprojects {
     apply plugin: 'idea'
-
+    apply plugin: 'java'
 }
 
 subprojects {
@@ -25,7 +25,6 @@ subprojects {
         mavenLocal()
         mavenCentral()
     }
-
 
     // gradle publish
     // ~/.m2/repoitory/com/company/project/<*>/0.0.1/<prod>-0.0.1.jar

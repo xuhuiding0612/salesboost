@@ -8,15 +8,14 @@ import com.salesup.salesboost.config.domain.JsonSerializationSalt;
 import javax.persistence.Entity;
 
 @Entity
-public class Product extends BasicDomain {
+public class Client extends BasicDomain {
   @JsonSerialize(using = DomainIdSerializer.class)
   @JsonDeserialize(using = DomainIdDeserializer.class)
-  @JsonSerializationSalt(saltClass = Product.class)
+  @JsonSerializationSalt(saltClass = Client.class)
   private Long id;
 
   private String name;
-  // TODO: add more properties: category
-  //    private ProductCategory productCategory;
+  // TODO: add more properties.
 
   @Override
   public Long getId() {
